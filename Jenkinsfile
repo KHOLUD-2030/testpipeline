@@ -23,7 +23,8 @@ pipeline {
     }
     post {
         always {
-            junit 'test-reports/*.xml' // This requires XML conversion if needed
+            // Specify the correct path to your test report files
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
