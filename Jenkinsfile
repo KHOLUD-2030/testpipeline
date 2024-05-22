@@ -8,11 +8,22 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/KHOLUD-2030/testpipeline.git'
             }
         }
-        stage('Build and Test') {
+        stage('Build') {
             steps {
-                // Run the Python script
+                // Run the Python script (Build step can be more complex in real scenarios)
                 sh 'python3 car_parts.py'
             }
+        }
+        stage('Test') {
+            steps {
+                // Run unit tests
+                sh 'python3 -m unittest discover -s . -p "test_*.py"'
+            }
+        }
+    }
+    post {
+        always {
+            junit 'test-reports/*.xml' // This requires XML conversion if needed
         }
     }
 }
