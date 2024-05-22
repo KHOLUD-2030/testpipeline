@@ -1,20 +1,17 @@
-# car_parts.py
+import unittest
+from car_parts import CarParts
 
-def print_engine():
-    print("Engine: V6")
+class TestCarParts(unittest.TestCase):
 
-def print_wheels():
-    print("Wheels: Alloy")
+    def test_list_parts(self):
+        parts = CarParts.list_parts()
+        self.assertIsInstance(parts, list)
+        self.assertGreater(len(parts), 0)
+        self.assertIn('Engine', parts)
 
-def print_body():
-    print("Body: Sedan")
+    def test_part_available(self):
+        self.assertTrue(CarParts.part_available('Engine'))
+        self.assertFalse(CarParts.part_available('Spoiler'))
 
-def print_interior():
-    print("Interior: Leather")
-
-if __name__ == "__main__":
-    print("Printing car parts:")
-    print_engine()
-    print_wheels()
-    print_body()
-    print_interior()
+if __name__ == '__main__':
+    unittest.main()
