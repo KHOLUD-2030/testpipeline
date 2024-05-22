@@ -1,17 +1,22 @@
-import unittest
-from car_parts import CarParts
+class CarParts:
+    def __init__(self):
+        self.parts = ['engine', 'wheels', 'brakes', 'seats', 'steering wheel']
 
-class TestCarParts(unittest.TestCase):
+    def get_parts(self):
+        return self.parts
 
-    def test_list_parts(self):
-        parts = CarParts.list_parts()
-        self.assertIsInstance(parts, list)
-        self.assertGreater(len(parts), 0)
-        self.assertIn('Engine', parts)
+    def add_part(self, part):
+        if part not in self.parts:
+            self.parts.append(part)
+            return True
+        return False
 
-    def test_part_available(self):
-        self.assertTrue(CarParts.part_available('Engine'))
-        self.assertFalse(CarParts.part_available('Spoiler'))
+    def remove_part(self, part):
+        if part in self.parts:
+            self.parts.remove(part)
+            return True
+        return False
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == "__main__":
+    car = CarParts()
+    print(car.get_parts())
