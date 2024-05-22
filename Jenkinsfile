@@ -24,7 +24,7 @@ pipeline {
     post {
         always {
             // Specify the correct path to your test report files
-            junit 'target/surefire-reports/*.xml'
+            junit '**/test-reports/*.xml'
         }
     }
 }
